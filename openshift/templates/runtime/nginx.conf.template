@@ -44,7 +44,6 @@ http {
         add_header Strict-Transport-Security "max-age=86400; includeSubDomains";
         add_header X-Content-Type-Options "nosniff";
         add_header X-XSS-Protection 1;
-        add_header X-FRAME-OPTIONS SAMEORIGIN
 
         location /api {
             proxy_pass          %API_URL%;
@@ -73,6 +72,9 @@ http {
             add_header  SMGOV_USERDISPLAYNAME  $http_smgov_userdisplayname;
             add_header  SMGOV_USERTYPE  $http_smgov_usertype;
             add_header  SMGOV_USERIDENTIFIER  $http_smgov_useridentifier;
+
+            proxy_hide_header 'X-FRAME-OPTIONS';
+            proxy_set_header X-FRAME-OPTIONS ALLOWALL;
 
             if ($http_origin ~ "^(https://www.facebook.com|https://platform.twitter.com|https://staticxx.facebook.com)"){
                 add_header "ACCESS-CONTROL-ALLOW-ORIGIN" $http_origin;
