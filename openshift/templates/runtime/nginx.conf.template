@@ -44,7 +44,7 @@ http {
         add_header Strict-Transport-Security "max-age=86400; includeSubDomains";
         add_header X-Content-Type-Options "nosniff";
         add_header X-XSS-Protection 1;
-        add_header X-Frame-Options "ALLOW-FROM https://platform.twitter.com";
+        add_header X-Frame-Options SAMEORIGIN;
 
         location /api {
             proxy_pass          %API_URL%;
@@ -63,7 +63,7 @@ http {
             try_files $uri $uri/ /index.html;
             gzip            on;
             gzip_min_length 1000;
-            gzip_types      *; ALLOW-FROM
+            gzip_types      *;
 
             sendfile off;
             expires -1;
