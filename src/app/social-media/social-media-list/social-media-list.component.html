@@ -1,5 +1,6 @@
 
 <app-hq-dashboard-sub-menu [socialmediatypes]="socialmediatypes"></app-hq-dashboard-sub-menu>
+<!--
 <div id="social-media-list" class="card-columns pl-0 pr-0 pt-3">
     <div *ngFor="let item of selectedSocialMedia">
         <div class="card">
@@ -18,9 +19,25 @@
         </div>
     </div>
 </div>
+-->
+
+<div id="social-media-list" class="card-columns pl-0 pr-0 pt-3">
+        <div *ngFor="let item of selectedSocialMedia">
+                <div [ngSwitch]="item.mediatype">
+                        <blockquote *ngSwitchCase="'Twitter'" id="463440424141459456" class="twitter-tweet" data-lang="en">
+                            <p lang="en" dir="ltr">just setting up my twttr</p><a href="https://publish.twitter.com/oembed?
+                                    url=https://twitter.com/Interior/status/463440424141459456"></a>
+                        </blockquote>
+                        
+                        <div *ngSwitchCase="'Facebook'" class="fb-post" data-href="https://www.facebook.com/BCProvincialGovernment/videos/2210698682535291/"></div>
+                        
+                    </div>
+        </div>
+</div>
 <div>
+
     test sdk
-    <blockquote id="463440424141459456" class="twitter-tweet" data-lang="en">
+    <blockquote *ngIf="item.mediatype===" id="463440424141459456" class="twitter-tweet" data-lang="en">
         <p lang="en" dir="ltr">just setting up my twttr</p><a href="https://publish.twitter.com/oembed?
                 url=https://twitter.com/Interior/status/463440424141459456"></a>
     </blockquote>

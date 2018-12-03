@@ -29,6 +29,25 @@ export class ApiService {
     }
   ];
 
+  private SocialMediaList: SocialMedia[] = [
+    {
+      id: '1',
+      url: 'https://www.facebook.com/thediscoverytwins/videos/2090358591201037/',
+      mediatype: ''
+    },
+    {
+      id: '2',
+      url: 'https://twitter.com/Interior/status/463440424141459456/',
+      mediatype: ''
+    },
+    {
+      id: '3',
+      url: 'https://www.facebook.com/BCProvincialGovernment/videos/2210698682535291/',
+      mediatype: ''
+    },
+    
+  ];
+
   constructor(private  httpClient:  HttpClient, @Inject('BASE_API_URL') baseApiUrl: string) {
     this.API_URL = baseApiUrl;
   }
@@ -59,8 +78,7 @@ export class ApiService {
   
   // get the social media list
   getSocialMediaPosts(): Observable<SocialMedia[]> {
-    return this.httpClient.get<SocialMedia[]>(`${this.API_URL}/api/Posts/Latest/home/default?count=10&api-version=1.0`)
-    .pipe();
+    return of(this.SocialMediaList);
   }
 
   // get the social media type list, used in the filter

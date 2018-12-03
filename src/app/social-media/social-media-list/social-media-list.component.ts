@@ -25,23 +25,13 @@ export class SocialMediaListComponent implements OnInit {
 
       // mockup data for the media types
       this.socialmedia.forEach(function (item, i, list) {
-        switch (i%5)
+        if (item.url.search('facebook.com')>=0)
         {
-          case 0:
-            item.mediatype = 'Facebook';
-            break;
-          case 1:
-            item.mediatype = 'Twitter';
-            break;
-          case 2:
-            item.mediatype = 'LinkedIn';
-            break;
-          case 3:
-            item.mediatype = 'YouTube';
-            break;
-          case 4:
-            item.mediatype = 'SoundCloud';
-            break;
+          item.mediatype = 'Facebook';
+        }
+        else if (item.url.search('twitter.com')>=0)
+        {
+          item.mediatype = 'Twitter';
         }
       });
     });
@@ -65,6 +55,5 @@ export class SocialMediaListComponent implements OnInit {
   UpdateSocialMediaTypeFilter(newSocialMediaType: string){
     this.filterBy = newSocialMediaType;
   }
-
   
 }
