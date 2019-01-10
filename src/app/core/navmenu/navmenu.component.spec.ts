@@ -44,13 +44,13 @@ describe('NavmenuComponent', () => {
     de = fixture.debugElement.query(By.css('.gov-navbar'));
     element  = de.nativeElement;
   });
-  
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should have a BC gov logo', () => {
-    expect(element.innerHTML).toContain("img");
+    expect(element.innerHTML).toContain('img');
   });
 
   it('should have a title', () => {
@@ -59,17 +59,32 @@ describe('NavmenuComponent', () => {
   });
 
   it('should display the `search` button', () => {
-      //There should a create button in the template
-      expect(element.innerHTML).toContain("fa-search");
+      // There should a create button in the template
+      expect(element.innerHTML).toContain('fa-search');
   });
 
   it('should display the `Topics` button', () => {
-    //There should a create button in the template
-    expect(element.innerHTML).toContain("Topics");
+    // There should a create button in the template
+    expect(element.innerHTML).toContain('Topics');
   });
 
   it('should display the `hamburger` menu', () => {
-    //There should a create button in the template
-    expect(element.innerHTML).toContain("navbar-toggler-icon");
+    // There should a create button in the template
+    expect(element.innerHTML).toContain('navbar-toggler-icon');
   });
-})
+
+  it('should have the user`s first initial', () => {
+    spyOn(component, 'isLoggedIn').and.returnValue(true);
+    spyOn(component, 'getFirstLetter').and.returnValue('A');
+    fixture.detectChanges();
+
+    expect(element.querySelector('.user-image').innerHTML).toBe('A');
+  });
+
+  it('should get a unique colour for each letter', () => {
+    const letters = [...Array(26).keys()].map(i => String.fromCharCode(i + 67));
+    const colours = letters.map(letter => component.getColor(letter));
+    const coloursSet = [...new Set(colours)];
+    expect(colours.length).toBe(coloursSet.length);
+  });
+});
