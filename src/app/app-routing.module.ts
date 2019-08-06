@@ -28,6 +28,9 @@ const appRoutes: Routes = [
     path: 'last-7-day-post-list',
     component: PostListComponent,
     resolve: { posts: PostListResolver, userMinistries: UserMinistryListResolver },
+    data: {
+      title: 'Last-7-Days'
+    }
   },
   {
     path: 'next-7-day-activity-list',
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
     },
     canActivate: [AuthGuard, RoleGuard],
     data: {
-      roles: ['Viewer', 'Contributor']
+      roles: ['Viewer', 'Contributor'],
+      title: '7-Days-Forecast'
     }
   },
   {
@@ -48,7 +52,8 @@ const appRoutes: Routes = [
     resolve: { themes: MessageListResolver },
     canActivate: [AuthGuard, RoleGuard],
     data: {
-      roles: ['Viewer', 'Contributor']
+      roles: ['Viewer', 'Contributor'],
+      title: 'Themes-Of-The-Week'
     }
   },
   {
@@ -57,7 +62,8 @@ const appRoutes: Routes = [
     resolve: { socialmedia: SociaMediaPostListResolver, socialmediatype: SociaMediaTypeListResolver },
     canActivate: [AuthGuard, RoleGuard],
     data: {
-      roles: ['Viewer', 'Contributor']
+      roles: ['Viewer', 'Contributor'],
+      title: 'Social-Media'
     },
     runGuardsAndResolvers: 'always'
   },

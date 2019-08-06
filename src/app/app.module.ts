@@ -56,6 +56,7 @@ import { HomeComponent } from './home/home.component';
 import { UtilsService } from './services/utils.service';
 import { MinistriesProvider } from './_providers/ministries.provider';
 import { SnowplowService } from './services/snowplow.service';
+import { AppInsightsService } from './services/applicationInsights.service';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -136,6 +137,7 @@ export function ministriesProviderFactory(provider: MinistriesProvider) {
     SocialMediaRenderService,
     UserPreferencesService,
     UtilsService,
+    AppInsightsService,
     // Resolvers
     ActivityListResolver,
     PostListResolver,

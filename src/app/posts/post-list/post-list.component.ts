@@ -7,7 +7,6 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UtilsService } from 'src/app/services/utils.service';
 import { MinistriesProvider } from 'src/app/_providers/ministries.provider';
-import { SnowplowService } from '../../services/snowplow.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
@@ -47,7 +46,6 @@ export class PostListComponent implements OnInit, AfterViewInit, OnDestroy {
     private utils: UtilsService,
     private ministriesProvider: MinistriesProvider,
     private sanitizer: DomSanitizer,
-    private snowplowService: SnowplowService,
     public renderer: Renderer2,
     private socialMediaRenderService: SocialMediaRenderService,
     private browserService: BrowserInfoService) {
@@ -106,7 +104,6 @@ export class PostListComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     });
     this.internetExplorer = this.browserService.getBrowser();
-    this.snowplowService.trackPageView();
     if (this.internetExplorer) {
       this.alerts.cancelable = true;
       this.alerts.showInfo(this.browserService.getIEDisclaimer());

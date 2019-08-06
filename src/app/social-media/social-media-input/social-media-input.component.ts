@@ -5,7 +5,7 @@ import { SocialMediaPostExtended } from '../../view-models/social-media-post-ext
 import { SocialMediaPostsService } from '../../services/socialMediaPosts.service';
 import { SocialMediaRenderService } from '../../services/socialMediaRender.service';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { SnowplowService } from '../../services/snowplow.service';
+//import { SnowplowService } from '../../services/snowplow.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
@@ -44,7 +44,7 @@ export class SocialMediaInputComponent implements OnInit, AfterViewInit, OnDestr
     private socialMediaService: SocialMediaPostsService,
     private socialMediaRenderService: SocialMediaRenderService,
     private alerts: AlertsService,
-    private snowplowService: SnowplowService,
+    //private snowplowService: SnowplowService,
     public renderer: Renderer2,
     private browserService: BrowserInfoService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -58,7 +58,7 @@ export class SocialMediaInputComponent implements OnInit, AfterViewInit, OnDestr
     this.activatedRoute.data.subscribe(data => {
       this.socialmedia = data['socialmedia'];
     });
-    this.snowplowService.trackPageView();
+    //this.snowplowService.trackPageView();
     if (this.internetExplorer) {
       this.alerts.cancelable = true;
       this.alerts.showInfo(this.browserService.getIEDisclaimer());

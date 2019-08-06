@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://dev.api.hub.gcpe.gov.bc.ca" // until the FW is open. https://dev.api.hub.gcpe.gov.bc.ca/
+  apiUrl: "https://dev.api.hub.gcpe.gov.bc.ca", // until the FW is open. https://dev.api.hub.gcpe.gov.bc.ca/
+  appInsights : {
+    instrumentationKey: '60339b85-3aca-4900-a1ad-e8a71341d342'
+  }
 };
 
 /*

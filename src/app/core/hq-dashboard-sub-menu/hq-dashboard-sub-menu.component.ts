@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { SocialMediaType } from '../../view-models/social-media-type';
+import { AppInsightsService } from '../../services/applicationInsights.service';
+import { AppInsights } from 'applicationinsights-js';
 
 @Component({
   selector: 'app-hq-dashboard-sub-menu',
@@ -18,7 +20,13 @@ export class HqDashboardSubMenuComponent implements OnInit {
   currentUrl = '';
   submenuOpen = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private appInsightsService: AppInsightsService) {
+    if (!window['appInsights'].config) {
+      // Setup Application Insights within the Angular Application
+      window['appInsights'].loadAppInsights();
+    }
+
+  }
 
   ngOnInit() {
     this.currentUrl = this.router.url;
@@ -37,6 +45,8 @@ export class HqDashboardSubMenuComponent implements OnInit {
 
   print() {
     window.print();
+    this.appInsightsService.logEvent('Print Event');
+    //window['appInsights'].trackEvent({name: 'Print Event'});
   }
 
   toggleSubmenu() {

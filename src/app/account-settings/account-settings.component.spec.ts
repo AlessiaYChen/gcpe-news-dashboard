@@ -9,7 +9,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MinistriesService } from '../services/ministries.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserPreferencesService } from '../services/userPreferences.service';
-import { SnowplowService } from '../services/snowplow.service';
 
 describe('AccountSettingsComponent', () => {
     let component: AccountSettingsComponent;
@@ -34,7 +33,6 @@ describe('AccountSettingsComponent', () => {
           providers: [
             MinistriesService,
             UserPreferencesService,
-            SnowplowService,
             { provide: ActivatedRoute, useClass: MockActivatedRoute },
             AuthService
           ],

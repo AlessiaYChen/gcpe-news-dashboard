@@ -3,6 +3,8 @@ import { UserAgentApplication } from 'msal';
 import { azureADConfig } from '../auth.config';
 import { BehaviorSubject } from 'rxjs';
 import { AuthProvider } from './auth-provider.service';
+//import { AppInsightsService } from '../services/applicationInsights.service';
+import { AppInsights } from 'applicationinsights-js';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +25,15 @@ export class MsalService extends AuthProvider {
       navigateToLoginRequestUrl: false,
       storeAuthStateInCookie: /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
     });
+    if (!window['appInsights'].config) {
+      // Setup Application Insights within the Angular Application
+      window['appInsights'].loadAppInsights();
+    }
   }
 
   public login() {
     this.msal.loginRedirect([azureADConfig.clientID]);
+    window['appInsights'].setAuthenticatedUserContext({authenticatedUserId: azureADConfig.clientID});
   }
 
   public getUser() {
@@ -48,6 +55,7 @@ export class MsalService extends AuthProvider {
   }
 
   public tryLogin() {
+    window['appInsights'].setAuthenticatedUserContext({authenticatedUserId: azureADConfig.clientID});
     if (this.msal.getUser()) {
       this.getToken();
     } else {

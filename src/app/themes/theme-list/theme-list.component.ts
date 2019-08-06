@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessagesService } from 'src/app/services/messages.service';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { SnowplowService } from '../../services/snowplow.service';
+//import { SnowplowService } from '../../services/snowplow.service';
 
 @Component({
   selector: 'app-theme-list',
@@ -17,13 +17,14 @@ export class ThemeListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private messagesService: MessagesService,
     private alerts: AlertsService,
-    private snowplowService: SnowplowService) { }
+    //private snowplowService: SnowplowService
+    ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.parseThemes(data);
     });
-    this.snowplowService.trackPageView();
+    //this.snowplowService.trackPageView();
   }
 
   parseThemes(data) {

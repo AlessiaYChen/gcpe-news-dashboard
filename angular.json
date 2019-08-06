@@ -98,7 +98,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/scripts/snowplow_tracker.js"
+              //"src/assets/scripts/snowplow_tracker.js"
             ],
             "assets": [
               "src/favicon.ico",

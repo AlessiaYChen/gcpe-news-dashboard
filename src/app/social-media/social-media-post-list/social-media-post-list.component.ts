@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SocialMediaType } from '../../view-models/social-media-type';
 import { SocialMediaPostExtended } from '../../view-models/social-media-post-extended';
 import { SocialMediaRenderService } from '../../services/socialMediaRender.service';
-import { SnowplowService } from '../../services/snowplow.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
@@ -39,7 +38,6 @@ export class SocialMediaPostListComponent implements OnInit, AfterViewInit, OnDe
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private socialMediaRenderService: SocialMediaRenderService,
-    private snowplowService: SnowplowService,
     public renderer: Renderer2,
     private browserService: BrowserInfoService,
     private alerts: AlertsService) {
@@ -63,7 +61,6 @@ export class SocialMediaPostListComponent implements OnInit, AfterViewInit, OnDe
       }
       this.filterBySocialMediaType = queryParams.type;
     });
-    this.snowplowService.trackPageView();
     this.internetExplorer = this.browserService.getBrowser();
     if (this.internetExplorer) {
       this.alerts.cancelable = true;

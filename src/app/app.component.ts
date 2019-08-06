@@ -15,7 +15,10 @@ export class AppComponent implements OnInit {
   title = 'BC Gov News';
   public isLoading = new BehaviorSubject<boolean>(true);
 
-  constructor(private alerts: AlertsService, private router: Router, private auth: AuthService, private conf: Configuration) {
+  constructor(private alerts: AlertsService,
+    private router: Router,
+    private auth: AuthService,
+    private conf: Configuration) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });

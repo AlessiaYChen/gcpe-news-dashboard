@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WeekDay } from '@angular/common';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { SnowplowService } from '../../services/snowplow.service';
+//import { AppInsights } from 'applicationinsights-js';
+import { AppInsightsService } from '../../services/applicationInsights.service';
 
 @Component({
   selector: 'app-activity-forecast-list',
@@ -24,13 +25,23 @@ export class ActivityForecastListComponent implements OnInit {
 
   private BASE_HUB_URL: string;
 
-  constructor(
+  constructor(private router: Router,
     private route: ActivatedRoute,
     appConfig: AppConfigService,
     private alerts: AlertsService,
     private utils: UtilsService,
-    private snowplowService: SnowplowService) {
-    this.BASE_HUB_URL = appConfig.config.HUB_URL;
+    private appInsightsService: AppInsightsService
+    ) {
+      this.BASE_HUB_URL = appConfig.config.HUB_URL;
+      this.appInsightsService.logPageView('7-Days-Forecast-Statics');
+    /*
+    if (!window['appInsights'].config) {
+      // Setup Application Insights within the Angular Application
+      window['appInsights'].loadAppInsights();
+    }
+
+    window['appInsights'].trackPageView({name: '7-Days-Forecast-Statics'});
+    */
   }
 
   ngOnInit() {
@@ -71,7 +82,6 @@ export class ActivityForecastListComponent implements OnInit {
         this.filterActivitiesByUserMinistries = queryParams.type;
       });
     });
-    this.snowplowService.trackPageView();
   }
 
   showActivity(contactMinistryKey: string): boolean {
