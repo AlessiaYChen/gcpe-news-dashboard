@@ -46,7 +46,16 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.local.ts"
                 }
-              ]
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                   "minify": false,
+                   "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "buildOptimizer": false
             },
             "production": {
               "fileReplacements": [
@@ -55,15 +64,21 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                   "minify": false,
+                   "inlineCritical": false
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -168,7 +183,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/gcpe-shared/tsconfig.lib.json",
             "project": "projects/gcpe-shared/ng-package.json"
@@ -202,6 +217,9 @@
       }
     }
   },
-  "defaultProject": "news-dashboard"
+  "defaultProject": "news-dashboard",
+  "cli": {
+    "analytics": false
+  }
 }
 

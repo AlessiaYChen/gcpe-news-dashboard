@@ -4,8 +4,8 @@ import { SocialMediaType } from '../../view-models/social-media-type';
 import { SocialMediaPostExtended } from '../../view-models/social-media-post-extended';
 import { SocialMediaRenderService } from '../../services/socialMediaRender.service';
 import { SnowplowService } from '../../services/snowplow.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { timer } from 'rxjs';
 import { BrowserInfoService } from '../../services/browser-info.service';
 import { AlertsService } from 'src/app/services/alerts.service';
@@ -122,13 +122,13 @@ export class SocialMediaPostListComponent implements OnInit, AfterViewInit, OnDe
     // if it is older cpu, then wait longer
     if (this.hardwareConcurrency >= 8) {
       if (!this.isEdge) {
-        this.timer = timer(5000); // 5000 millisecond means 5 seconds
+        this.timer = timer(20000); // 5000 millisecond means 5 seconds
       } else {
         this.timer = timer(this.loading_time_edge * 1000); // 5000 millisecond means 5 seconds
       }
     } else {
       if (!this.isEdge) {
-        this.timer = timer(7000); // 5000 millisecond means 5 seconds
+        this.timer = timer(15000); // 5000 millisecond means 5 seconds
       } else {
         this.timer = timer(this.loading_time_edge * 1100); // 5000 millisecond means 5 seconds
       }

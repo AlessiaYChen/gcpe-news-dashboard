@@ -1,5 +1,5 @@
 # Get community edition of nodejs v8.x (LTS)
-FROM centos/nodejs-10-centos7
+FROM node:16.10-bullseye
 
 # Switch to root for package installs
 USER 0

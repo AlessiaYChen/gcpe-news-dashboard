@@ -21,6 +21,7 @@ import { UserMinistryListResolver } from './_resolvers/user-ministry-list.resolv
 import { MinistriesResolver } from './_resolvers/ministries.resolver';
 import { HqDashboardSubMenuComponent } from './core/hq-dashboard-sub-menu/hq-dashboard-sub-menu.component';
 import { HomeComponent } from './home/home.component';
+import { SocialMediaPageViewComponent} from './social-media/social-media-page-view/social-media-page-view.component';
 
 const appRoutes: Routes = [
   { path: 'account-settings', component: AccountSettingsComponent, resolve: { ministries: MinistriesResolver } },
@@ -60,6 +61,11 @@ const appRoutes: Routes = [
       roles: ['Viewer', 'Contributor']
     },
     runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'social-media-page-view',
+    component: SocialMediaPageViewComponent,
+    resolve: { socialmedia: SociaMediaPostListResolver, socialmediatype: SociaMediaTypeListResolver }
   },
   {
     path: 'social-media-input',
@@ -119,7 +125,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { initialNavigation: false })],
+  imports: [RouterModule.forRoot(appRoutes, { initialNavigation: 'disabled', relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 

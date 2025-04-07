@@ -12,3 +12,17 @@
 .card-no-border {
   border: none;
 }
+
+.instagram-wrapper {
+    margin-right: -10px;
+}
+
+.Caption {
+    display: none !important;
+}
+
+@media screen and (max-width: 992px) {
+    .instagram-media {
+      min-width: unset !important;
+    }
+  }

@@ -12,15 +12,24 @@ export class SocialMediaRenderService {
 
   initFacebook() {
     FB.init({
+      appId: '290738601563206',
       xfbml: true,
-      version: 'v3.2'
+      version: 'v14.0',
+      autoLogAppEvents : false,
+
     });
+
   }
 
   loadTwitterWidgets() {
     if (twttr.ready()) {
       twttr.widgets.load();
     }
+  }
+
+  loadFacebookTimeline() {
+    //this.initFacebook();
+    FB.XFBML.parse();
   }
 
   loadFacebookWidgets() {
